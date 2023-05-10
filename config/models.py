@@ -5,6 +5,19 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+table_reservation = [
+    (1, "1_Table"),
+    (2, "2_Table"),
+    (3, "3_Table"),
+    (4, "4_Table"),
+    (5, "5_Table"),
+    (6, "6_Table"),
+    (7, "7_Table"),
+    (8, "8_Table"),
+    (9, "9_Table"),
+    (10, "10_Table"),
+]
+
 class Login(models.Model):
     username = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(max_length=200, null=True, blank=True)
