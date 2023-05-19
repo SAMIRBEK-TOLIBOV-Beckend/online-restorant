@@ -47,16 +47,6 @@
                         <li><a href="{% url 'about' %}">About</a></li>
                         <li><a href="{% url 'menu' %}">Menu</a></li>
                         <li><a href="{% url 'order' %}">Online Order</a></li>
-                        <li class="menu-has-children"><a href="#">pages</a>
-                            <ul>
-                                <li class="menu-has-children"><a href="#">Drop Down</a>
-                                    <ul>
-                                        <li><a href="#">Drop Down 1</a></li>
-                                        <li><a href="#">Drop Down 2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
                         <li class="menu-active"><a href="{% url 'contact' %}">Contact</a></li>
                         <li><a href="{% url 'login' %}">Login</a></li>
                         <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"></a></li>
@@ -65,60 +55,6 @@
             </div>
         </header>
         <!-- Header End -->
-
-        <!-- Reservations Section Start -->
-        <section id="reservations">
-            <div class="container">
-                <header class="section-header">
-                    <h3>Reservations</h3>
-                </header>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-row">
-                            <div class="control-group col-sm-3">
-                                <div class="form-group">
-                                    <div class="input-group date" id="date" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#date"/>
-                                        <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="control-group col-sm-3">
-                                <div class="form-group">
-                                    <div class="input-group date" id="time" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" placeholder="Time" data-target="#time"/>
-                                        <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="control-group col-sm-3">
-                                <select class="custom-select">
-                                    <option selected>Party Size</option>
-                                    <option value="1">1 Person</option>
-                                    <option value="2">2 People</option>
-                                    <option value="3">3 People</option>
-                                    <option value="4">4 People</option>
-                                    <option value="5">5 People</option>
-                                    <option value="6">6 People</option>
-                                    <option value="7">7 People</option>
-                                    <option value="8">8 People</option>
-                                    <option value="9">9 People</option>
-                                    <option value="10">10 People</option>
-                                </select>
-                            </div>
-                            <div class="control-group col-sm-3">
-                                <button class="btn btn-block btn-book">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Reservations Section End -->
 
         <!-- Contact Section Start -->
         <section id="contact">
@@ -159,7 +95,9 @@
 
                     <div class="col-md-6">
                         <div class="contact-form">
-                            <form>
+                            <form method="post">
+                                {% csrf_token %}
+                                <!-- {{ form.as_p }} -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <input type="text" class="form-control" placeholder="Your Name" required="required" />
@@ -182,27 +120,6 @@
             </div>
         </section>
         <!-- Contact Section End -->
-            
-        <!-- Subscriber Section Start -->
-        <section id="subscriber">
-            <div class="container">
-                <div class="section-header">
-                    <h3>Get Latest Food Info</h3>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Enter Your Email">
-                            </div>
-                            <button type="submit" class="btn">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Subscriber Section end -->
 
         <!-- Footer Start -->
         <footer id="footer">
@@ -243,6 +160,43 @@
         <script src="{% static 'vendor/tempusdominus/js/moment.min.js' %}"></script>
         <script src="{% static 'vendor/tempusdominus/js/moment-timezone.min.js' %}"></script>
         <script src="{% static 'vendor/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+
+
+
+
+        <script>
+            function validateForm(){
+                let name = document.forms['contactForm']['name'].value;
+                let email = document.forms['contactForm']['email'].value;
+                let message = document.forms['contactForm']['message'].value;
+          
+                if (name == '' || hasNumber(name)){
+                    alert('Name must be filled out and must only contain letters');
+                    return false;
+                } else if (email == '' && phone == ''){
+                    alert('Email or phone must be filled out');
+                    return false;
+                } else if (!(email.includes('@'))){
+                    alert('Email does not seem to be valid');
+                    return false;
+                } else if (message == ''){
+                    alert('Message must be filled out');
+                    return false;
+                } else {
+                    // confirm or cancel
+                    return confirm('Do you really want to sent the message?')
+                }
+            }
+          
+            function hasNumber(myString) {
+                return /\d/.test(myString);
+            }
+          </script>
+
+
+
+
 
         <!-- Main Javascript File -->
         <script src="{% static 'js/main.js' %}"></script>

@@ -27,8 +27,8 @@ def cart(request):
 def login(request):
     return render(request, 'login.html')
 
-def register(request):
-    return render(request, 'contact.html')
+# def register(request):
+#     return render(request, 'contact.html')
 
 def view(request):
     return render(request, 'detail.html')
