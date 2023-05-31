@@ -48,7 +48,7 @@
                         <li><a href="{% url 'menu' %}">Menu</a></li>
                         <li><a href="{% url 'order' %}">Online Order</a></li>
                         <li><a href="{% url 'contact' %}">Contact</a></li>
-                        <li class="menu-active"><a href="{% url 'login' %}">Login</a></li>
+                        <!-- <li class="menu-active"><a href="{% url 'login' %}">Login</a></li> -->
                         <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"></a></li>
                     </ul>
                 </nav>
@@ -57,51 +57,49 @@
         <!-- Header End -->
 
 
-        <!-- Login Section Start -->
-        <section id="login">
+        <!-- Logout Section Start -->
+        <section id="login" class="text-center">
             <div class="container">
                 <div class="section-header">
-                    <h3>Registration / Login</h3>
+                    <h3><a href="{% url 'logout' %}">Registration</a>  /  <a href="{% url 'login' %}">Login</a></h3>
+                    <!-- <h3>Registration / Login</h3> -->
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="login-col-1">
-                            <div class="login-form">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <input type="text" class="form-control" placeholder="Your Name" required="required" />
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="email" class="form-control" placeholder="Your Email" required="required" />
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <input type="password" class="form-control" placeholder="Your Password" required="required" />
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="password" class="form-control" placeholder="Repeat Your Password" required="required" />
-                                        </div>
-                                    </div>
-                                    <div><button type="submit">Send Message</button></div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
                         <div class="login-col-2">
                             <div class="login-form">
-                                <form>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Your Email" required="required" />
+                                <form action="order/" method="POST">
+                
+                                    {% csrf_token %}
+
+                                    {% if error%}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{error}}
                                     </div>
+                                    {% endif %}
+                                    <!-- email -->
                                     <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Your Password" required="required" />
+                                        <label for="">Email</label>
+                                        <input required type="email" name="email" id=""
+                                        value="{{values.email}}" 
+                                        class=" form-control-sm form-control" placeholder="example@gmail.com">
                                     </div>
-                                    <div><button type="submit">Send Message</button></div>
+                                
+                                
+                                    <!-- password -->
+                                    <div class="form-group">
+                                        <label for="">Password</label>
+                                        <input type="password" 
+                                        name="password" 
+                                        id=""
+                                         class="form-control form-control-sm" placeholder="********">
+                                    </div>
+                                
+                                    <hr>
+                                    <div class="form-group">
+                                        <input class="btn btn-sm btn-info col-lg-4" type="submit" value="Login">
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -109,7 +107,7 @@
                 </div>
             </div>
         </section>
-        <!-- Login Section End -->
+        <!-- Logout Section End -->
 
         <!-- Footer Start -->
         <footer id="footer">

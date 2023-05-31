@@ -48,8 +48,8 @@
                         <li><a href="{% url 'menu' %}">Menu</a></li>
                         <li><a href="{% url 'order' %}">Online Order</a></li>
                         <li class="menu-active"><a href="{% url 'contact' %}">Contact</a></li>
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"></a></li>
+                        <!-- <li><a href="">Login</a></li> -->
+                        <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"><span>0</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -100,18 +100,23 @@
                                 <!-- {{ form.as_p }} -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" class="form-control" placeholder="Your Name" required="required" />
+                                        <input class="form-control" placeholder="Your Name" required="required" name="name" />
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="email" class="form-control" placeholder="Your Email" required="required" />
+                                        <input class="form-control" placeholder="Your Email" required="required" name="email" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Subject" required="required" />
+                                    <input class="form-control" placeholder="Subject" required="required" name="title" />
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="5" placeholder="Message" required="required" ></textarea>
+                                    <textarea class="form-control" rows="5" placeholder="Message" required="required" name="text" ></textarea>
                                 </div>
+                                    {% if text %}
+                                    <script>
+                                     alert('{{text}}');
+                                    </script>
+                                    {% endif %}
                                 <div><button type="submit">Send Message</button></div>
                             </form>
                         </div>
@@ -160,44 +165,6 @@
         <script src="{% static 'vendor/tempusdominus/js/moment.min.js' %}"></script>
         <script src="{% static 'vendor/tempusdominus/js/moment-timezone.min.js' %}"></script>
         <script src="{% static 'vendor/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
-
-
-
-
-
-        <script>
-            function validateForm(){
-                let name = document.forms['contactForm']['name'].value;
-                let email = document.forms['contactForm']['email'].value;
-                let message = document.forms['contactForm']['message'].value;
-          
-                if (name == '' || hasNumber(name)){
-                    alert('Name must be filled out and must only contain letters');
-                    return false;
-                } else if (email == '' && phone == ''){
-                    alert('Email or phone must be filled out');
-                    return false;
-                } else if (!(email.includes('@'))){
-                    alert('Email does not seem to be valid');
-                    return false;
-                } else if (message == ''){
-                    alert('Message must be filled out');
-                    return false;
-                } else {
-                    // confirm or cancel
-                    return confirm('Do you really want to sent the message?')
-                }
-            }
-          
-            function hasNumber(myString) {
-                return /\d/.test(myString);
-            }
-          </script>
-
-
-
-
-
         <!-- Main Javascript File -->
         <script src="{% static 'js/main.js' %}"></script>
 

@@ -48,8 +48,8 @@
                         <li><a href="{% url 'menu' %}">Menu</a></li>
                         <li class="menu-active"><a href="{% url 'order' %}">Online Order</a></li>
                         <li><a href="{% url 'contact' %}">Contact</a></li>
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"></a></li>   
+                        <!-- <li><a href="">Login</a></li> -->
+                        <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"><span>0</span></a></li>   
                     </ul>
                 </nav>
             </div>
@@ -63,78 +63,17 @@
                     <h3>delicious Food Menu</h3>
                 </header>
                 <div class="row">
+                    {% for food in foods %}
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-1.jpg' %}" />
-                            <div>$20</div>
-                            <h4>Lorem ipsum</h4>
-                            <a href="{% url 'view' %}">Details</a>
+                            <img class="img-fluid" src="{{ food.food_image.url }}" />
+                            <div>{{food.food_price}}$</div>
+                            <h4>{{food.food_name}}</h4>
+                            <a href="{% url 'view' food.id %}">Details</a>
+                            <a href="#">Add To Cart</a>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-2.jpg' %}" />
-                            <div>$15</div>
-                            <h4>Curabitur Commodo</h4>
-                            <a href="{% url 'view' %}">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-3.jpg' %}" />
-                            <div>$12</div>
-                            <h4>Proin Tortor</h4>
-                            <a href="{% url 'view' %}">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-4.jpg' %}" />
-                            <div>$18</div>
-                            <h4>Aliquam Erat</h4>
-                            <a href="{% url 'view' %}">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-5.jpg' %}" />
-                            <div>$25</div>
-                            <h4>Curabitur Arcu Massa</h4>
-                            <a href="{% url 'view' %}">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-6.jpg' %}" />
-                            <div>$10</div>
-                            <h4>Vestibulum Fringilla</h4>
-                            <a href="{% url 'view' %}">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-7.jpg' %}" />
-                            <div>$18</div>
-                            <h4>Ullamcorper Facilisis </h4>
-                            <a href="{% url 'view' %}">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-8.jpg' %}" />
-                            <div>$14</div>
-                            <h4>Integer Ullamcorper</h4>
-                            <a href="{% url 'view' %}">Details</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 d-sm-none d-md-block d-lg-none">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-9.jpg' %}" />
-                            <div>$22</div>
-                            <h4>Vestibulum Posuere</h4>
-                            <a href="{% url 'view' %}">Details</a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>

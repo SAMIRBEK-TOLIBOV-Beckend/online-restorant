@@ -6,3 +6,5 @@ from .models import *
 admin.site.register(Login)
 admin.site.register(Food)
 admin.site.register(Order)
+admin.site.register(Comment)
+

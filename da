@@ -1,0 +1,47 @@
+[33mcommit 03bf5bd9ccdf32541c0c7df1b1c706b5e923466e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Samirbek <tolibovsamirbek070@gmail.com>
+Date:   Fri May 19 14:34:58 2023 +0500
+
+    front-end qismi
+
+[33mcommit a5545297c5b0017e58c95ae9a8fbc89ad25a03bf[m
+Author: Samirbek <tolibovsamirbek070@gmail.com>
+Date:   Wed May 17 22:06:11 2023 +0500
+
+    front-end, back-end qismi
+
+[33mcommit bbe02165f4ba76836028181c22b2bc575bdd7c0a[m
+Author: Samirbek <tolibovsamirbek070@gmail.com>
+Date:   Wed May 10 16:29:00 2023 +0500
+
+    models.py
+
+[33mcommit e3da825f1f6c1e98f23bdbefab7d06bb2f20cefd[m
+Author: Samirbek <tolibovsamirbek070@gmail.com>
+Date:   Wed May 10 15:51:12 2023 +0500
+
+    urls.py
+
+[33mcommit 54f6fdea75d9fa01595bb4530e746bd877a6f8fa[m
+Author: Samirbek <tolibovsamirbek070@gmail.com>
+Date:   Wed May 10 15:41:30 2023 +0500
+
+    models.py, admin.py, urls.py, views.py
+
+[33mcommit 5e6a1c0838e84cec05ff16317c4125e6eaa0bbe3[m
+Author: Samirbek <tolibovsamirbek070@gmail.com>
+Date:   Wed May 10 00:18:23 2023 +0500
+
+    fast-food restoran project in django and models.py
+
+[33mcommit aad4db3e1cf9e606a77ab176d79cbe5fa7e4d53a[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Samirbek <tolibovsamirbek070@gmail.com>
+Date:   Fri May 5 20:36:34 2023 +0500
+
+    django settings qismi
+
+[33mcommit d374dd87fc8a123d8e9485e22031ec5c169a3707[m
+Author: Ziyoda <Ziyodaeva@mail.com>
+Date:   Fri May 5 19:40:51 2023 +0500
+
+    Added 3 new files

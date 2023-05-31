@@ -36,66 +36,114 @@
               <nav id="nav-menu-container">
                   <ul class="nav-menu">
                       <li><a href="{% url 'index' %}">Home</a></li>
-                      <li class="menu-active"><a href="{% url 'about' %}">About</a></li>
+                      <li><a href="{% url 'about' %}">About</a></li>
                       <li><a href="{% url 'menu' %}">Menu</a></li>
                       <li><a href="{% url 'order' %}">Online Order</a></li>
                       <li><a href="{% url 'contact' %}">Contact</a></li>
-                      <li><a href="{% url 'login' %}">Login</a></li>
-                      <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"></a></li>
+                      <!-- <li><a href="">Login</a></li> -->
+                      <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"><span>0</span></a></li>
                   </ul>
               </nav>
           </div>
       </header>
       <!-- Header End -->
 
-<div class="grid grid-cols-5 gap-6">
-    <div class="col-span-3">
-        <img src="{{ item.image.url }}" class="rounded-xl">
-    </div>
-
-    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
-        <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
-        <p class="text-gray-500"><strong>Price: </strong>{{ item.price }}</p>
-        <p class="text-gray-500"><strong>Seller: </strong>{{ item.created_by.username }}</p>
+      <style>
+        .course-card {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          
+          .course-header {
+            text-align: center;
+          }
+          
+          .course-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px;
+          }
+          
+          .course-body {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+          }
+          
+          .course-image {
+            width: 250px;
+            height: 250px;
+            margin-right: 20px;
+            border-radius: 5px;
+          }
+          
+          .course-details {
+            flex-grow: 1;
+          }
+          
+          .course-paragraph {
+            margin-bottom: 10px;
+          }
+          
+          .course-info {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+          }
+          
+          .course-price {
+            margin-right: 10px;
+          }
+          
+          .bold{
+            font-weight: bold;
     
-        {% if item.description %}
-            <p class="text-gray-700">
-                <strong class="text-gray-500">Description:</strong><br>
-                {{ item.description }}
-            </p>
-        {% endif %}
-
-        {% if request.user == item.created_by %}
-            <div class="mt-6 p-6 bg-white rounded-xl">
-                <p>This is your item!</p>
-
-                <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl">Edit</a>
-                <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl">Delete</a>
+          }
+          .course-duration,
+          .course-teacher {
+            margin-right: 10px;
+          }
+          
+          .register-course {
+            text-align: center;
+            margin-top: 10px;
+          }
+          
+          .btn-primary {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          .btn-primary:hover{
+            color: white;
+            transition: 0.6s;
+          }
+    </style>
+    
+    <div class="course-card">
+        <div class="course-header">
+          <div class="course-title">{{enroll.title}}</div>
+        </div>
+    
+        <div class="course-body">
+          <img class="course-image" src="{{ food.food_image.url }}" alt="Course Image">
+          <div class="course-details">
+            <div class="course-duration"><span class="bold">Duration:</span>{{food.food_name}}</div>
+            <div class="course-teacher"><span class="bold">Teacher:</span>{{food.food_price}}$</div>
+          </div>
+        </div>
+            <p>{{food.food_ingredient}}</p>
+            <div class="form-group">
+                <!-- <a class="btn btn-sm btn-info" href="#">Add To Cart</a> -->
+                <a href="{% url 'cart' %}"><input class="btn btn-sm btn-info" type="submit" value="Add To Cart"></a>
             </div>
-        {% else %}  
-            <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact seller</a>
-        {% endif %}
+        </div>  
     </div>
-</div>
-
-<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <div class="grid grid-cols-3 gap-3">
-        {% for item in related_items %}
-            <div>
-                <a href="#">
-                    <div>
-                        <img src="{{ item.image.url }}" class="rounded-t-xl">
-                    </div>
-
-                    <div class="p-6 bg-white rounded-b-xl">
-                        <h2 class="text-2xl">{{ item.name }}</h2>
-                        <p class="text-gray-500">Price: {{ item.price }}</p>
-                    </div>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
-</div>
 
 <!-- Footer Start -->
 <footer id="footer">

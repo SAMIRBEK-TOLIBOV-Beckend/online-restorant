@@ -48,8 +48,8 @@
                         <li><a href="{% url 'menu' %}">Menu</a></li>
                         <li><a href="{% url 'order' %}">Online Order</a></li>
                         <li><a href="{% url 'contact' %}">Contact</a></li>
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li class="menu-active"><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"></a></li>
+                        <!-- <li><a href="">Login</a></li> -->
+                        <li class="menu-active"><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"><span>0</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -57,56 +57,38 @@
         <!-- Header End -->
 
         <!-- Cart Section Start -->
-        <section id="cart">
-            <div class="container">
-                <header class="section-header">
-                    <h3>Cart</h3>
-                </header>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive-sm">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Menu</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Total</th>
-                                        <th scope="col">Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Lorem ipsum</th>
-                                        <td>$10</td>
-                                        <td><div class="quantity"><input type="text" value="1"></div></td>
-                                        <td>$10</td>
-                                        <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Proin Tortor</th>
-                                        <td>$15</td>
-                                        <td><div class="quantity"><input type="text" value="2"></div></td>
-                                        <td>$30</td>
-                                        <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Aliquam Erat</th>
-                                        <td>$20</td>
-                                        <td><div class="quantity"><input type="text" value="3"></div></td>
-                                        <td>$60</td>
-                                        <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="button">
-                            <button type="submit">Checkout</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="tab-pane " id="orders">
+            <h4 class="text-center my-2">Order History</h4>
+
+            <ul class="list-group">
+               {% for order in orders %}
+               <a href="{% url 'dish' id=order.item.id %}">
+                   <li class="list-group-item list-group-item-action">
+                       <div class="row">
+                           <div class="col-md-2">
+                               <img src="/media/{{order.item.image}}" style="height:70px" class="rounded">
+                           </div>
+                            <div class="col-md-8">
+                               <h4>{{order.item.name}}</h4>
+                               <p>&dollar; {{order.item.discounted_price}}</p>
+                               <p class="my-0"><small>INVOICE ID: {{order.invoice_id}}</small></p>
+                               <p class="font-italic"><small>{{order.ordered_on}}</small></p>
+                            </div>  
+                            <div class="col-md-2">
+                                {% if order.status == True %}
+                                   <button class="btn btn-success btn-sm">Completed</button>
+                                {% else %}
+                                <button class="btn btn-danger btn-sm">Cancelled</button>
+                                {% endif %}
+                            </div>
+                       </div>
+                   </li>
+                   </a>
+               {% endfor %}
+            </ul>
+           </div>
+
+       </div>
         <!-- Cart Section End -->
     
         <!-- Footer Start -->

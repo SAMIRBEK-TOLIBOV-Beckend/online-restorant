@@ -48,8 +48,8 @@
                         <li><a href="{% url 'menu' %}">Menu</a></li>
                         <li><a href="{% url 'order' %}">Online Order</a></li>
                         <li><a href="{% url 'contact' %}">Contact</a></li>
-                        <li><a href="{% url 'login' %}">Log in</a></li>
-                        <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"></a></li>
+                        <!-- <li><a href="">Log in</a></li> -->
+                        <li><a href="{% url 'cart' %}" class="fa fa-shopping-cart" id="box"><span>0</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -60,7 +60,7 @@
         <div id="welcome">
             <div class="container">
                 <h3>Welcome to Italian Cuisine</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas gravida sollicitudin turpis id posuere. Fusce nec rhoncus nibh. Fusce arcu libero, euismod eget commodo at, venenatis a nisi. Sed faucibus metus sed leo vulputate blandit.</p>
+                <p>Italiya oshxonasi Qo'shma Shtatlardagi eng mashhur taomlardan biridir. Aslida, National Geographic ma'lumotlariga ko'ra, AQShdagi jami 800 000 restorandan 100 000 tasi italyan taomlariga ixtisoslashgan. Ko'p jihatdan, bu oshxona olma pirogi kabi Amerikaga aylandi.</p>
                 <a href="#">Book Now</a>
             </div>
         </div>
@@ -106,78 +106,17 @@
                     <h3>delicious Food Menu</h3>
                 </header>
                 <div class="row">
+                    {% for food in foods %}
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-1.jpg' %}" />
-                            <div>$20</div>
-                            <h4>Lorem ipsum</h4>
-                            <a href="order.html">Order Now</a>
+                            <img class="img-fluid" src="{{ food.food_image.url }}" />
+                            <div>{{food.food_price}}$</div>
+                            <h4>{{food.food_name}}</h4>
+                            <a href="{% url 'view' food.id %}">Details</a>
+                            <a href="{% url 'cart' %}">Add To Cart</a>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-2.jpg' %}" />
-                            <div>$15</div>
-                            <h4>Curabitur Commodo</h4>
-                            <a href="order.html">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-3.jpg' %}" />
-                            <div>$12</div>
-                            <h4>Proin Tortor</h4>
-                            <a href="order.html">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-4.jpg' %}" />
-                            <div>$18</div>
-                            <h4>Aliquam Erat</h4>
-                            <a href="order.html">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-5.jpg' %}" />
-                            <div>$25</div>
-                            <h4>Curabitur Arcu Massa</h4>
-                            <a href="order.html">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-6.jpg' %}" />
-                            <div>$10</div>
-                            <h4>Vestibulum Fringilla</h4>
-                            <a href="order.html">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-7.jpg' %}" />
-                            <div>$18</div>
-                            <h4>Ullamcorper Facilisis </h4>
-                            <a href="order.html">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-8.jpg' %}" />
-                            <div>$14</div>
-                            <h4>Integer Ullamcorper</h4>
-                            <a href="order.html">Order Now</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 d-sm-none d-md-block d-lg-none">
-                        <div class="single-menu">
-                            <img class="img-fluid" src="{% static 'img/menu-9.jpg' %}" />
-                            <div>$22</div>
-                            <h4>Vestibulum Posuere</h4>
-                            <a href="order.html">Order Now</a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -357,20 +296,25 @@
 
                     <div class="col-md-6">
                         <div class="contact-form">
-                            <form>
+                            <form method="post">
+                                {% csrf_token %}
+                                <!-- {{ form.as_p }} -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" class="form-control" placeholder="Your Name" required="required" />
+                                        <input class="form-control" placeholder="Your Name" required="required" name="name" />
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="email" class="form-control" placeholder="Your Email" required="required" />
+                                        <input class="form-control" placeholder="Your Email" required="required" name="email" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Subject" required="required" />
+                                    <input class="form-control" placeholder="Subject" required="required" name="title" />
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="5" placeholder="Message" required="required" ></textarea>
+                                    <textarea class="form-control" rows="5" placeholder="Message" required="required" name="text" ></textarea>
+                                </div>
+                                <div class="my-3 text_center">
+                                    {{message}}
                                 </div>
                                 <div><button type="submit">Send Message</button></div>
                             </form>
